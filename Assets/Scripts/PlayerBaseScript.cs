@@ -10,6 +10,8 @@ public class PlayerBaseScript : MonoBehaviour
     public float speed = 10f;
     [SerializeField] private Transform interactor;
 
+    public float horz_move, vert_move;
+
 
     // Start is called before the first frame update
     void Start()
@@ -22,8 +24,8 @@ public class PlayerBaseScript : MonoBehaviour
     {
 
         //movement bool
-        float vert_move = Input.GetAxis("Vertical") ;
-        float horz_move = Input.GetAxis("Horizontal") ;
+        vert_move = Input.GetAxis("Vertical") ;
+        horz_move = Input.GetAxis("Horizontal") ;
 
         transform.Translate(
             horz_move * Time.deltaTime * speed,

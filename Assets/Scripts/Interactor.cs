@@ -5,8 +5,10 @@ using UnityEngine.UIElements;
 
 public class Interactor : MonoBehaviour
 {
+    //vector3 of object
     [SerializeField] private Transform _interactionPoint;
     [SerializeField] private float _interactionPointRadius = 0.5f;
+    //layer for collision
     [SerializeField] private LayerMask _interactableMask;
     [SerializeField] private InteractivePromptUI _interactivePromptUI;
 
