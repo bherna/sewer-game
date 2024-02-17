@@ -54,7 +54,7 @@ public class Player_Combat : MonoBehaviour
 
         //damage enemy
         foreach(Collider2D enemy in hitEnemies){
-            enemy.GetComponent<Slime_Combat>().TakeDamage(attackDamage, kb_vector);
+            enemy.GetComponent<Slime_Combat>().TakeDamage(gameObject, attackDamage, kb_force);
         }
 
     }

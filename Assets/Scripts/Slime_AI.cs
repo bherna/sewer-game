@@ -66,6 +66,7 @@ public class Slime_AI : MonoBehaviour
         if(path == null){
             return;
         }
+        //stop moving (if we reach end of waypoint list)
         if(currentWaypoint >= path.vectorPath.Count){
             reachedEndOfPath = true;
             return;
@@ -84,12 +85,15 @@ public class Slime_AI : MonoBehaviour
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
 
+
         //if reached current waypoint
         if(distance < nextWaypointDistance){
             //go to next waypoint then
             currentWaypoint++;
         }
+        
 
+        //animation flip sprite
         if(force.x >= 0.01f){
             sprite.localScale = new Vector3(-1f, 1f, 1f);
         }
