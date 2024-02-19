@@ -72,7 +72,7 @@ public class Player_Combat : MonoBehaviour
     public void TakeDamage_Player(GameObject sender, float damage){
 
         //take damage
-        Debug.Log("Player: 'ouch' ");
+        Debug.Log("<color=red>Player: </color> 'ouch' ");
         currentHealth -= damage;
 
 
@@ -85,7 +85,7 @@ public class Player_Combat : MonoBehaviour
 
     private void Die_Player(){
 
-        Debug.Log("Player: died");
+        Debug.Log("<color=red>Player: </color> died");
 
         //die animation
     }

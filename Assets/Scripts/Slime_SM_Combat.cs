@@ -13,10 +13,20 @@ public class Slime_SM_Combat : MonoBehaviour
 
     [SerializeField] Slime_StateMachine stateMachine;
 
+
+
     public float KBTimeLength = 1f;
     private float SetTimer = float.NegativeInfinity;
-
     private bool timerIsRunning = false;
+    
+
+
+
+    public int damage = 20;
+    public int dash = 1;
+
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +37,7 @@ public class Slime_SM_Combat : MonoBehaviour
     public void TakeDamage(GameObject sender, float damage, float kb_force){
 
         //take damage
-        Debug.Log("Slime: 'ouch' ");
+        Debug.Log("<color=blue>Slime: </color> 'ouch' ");
         currentHealth -= damage;
 
         //kb logic
@@ -40,6 +50,7 @@ public class Slime_SM_Combat : MonoBehaviour
         //if we are out of health
         if(currentHealth <= 0){
             Die();
+            
         }
 
     }
@@ -47,13 +58,35 @@ public class Slime_SM_Combat : MonoBehaviour
 
     private void Die(){
 
-        Debug.Log("enemy died");
+        Debug.Log("<color=blue>Slime died :( </color>");
 
         //die animation
+
+        //stateMachine.idle = true;
     }
 
-    public void Attack(){
-        Debug.Log("Slime: ATTACK;");
+    //basic attack of slime
+    //throw their body at the player, and hope they hit
+    public void Attack(Transform target){
+
+        Debug.Log("<color=blue>Slime: </color> ATTACK");
+
+        //lunge
+        rb.AddForce((target.position - transform.position).normalized * dash, ForceMode2D.Impulse);
+
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        
+        if(other.gameObject.name == "Player"){
+            
+            //player takes damage
+            other.gameObject.GetComponent<Player_Combat>().TakeDamage_Player(other.gameObject, damage);
+        }
+
+        //bounce off object we collided with
+        rb.AddForce(rb.velocity.normalized * -1 * dash, ForceMode2D.Impulse);
+
     }
 
 

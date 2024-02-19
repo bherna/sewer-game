@@ -840,9 +840,9 @@ GameObject:
   m_Component:
   - component: {fileID: 752280177}
   - component: {fileID: 752280176}
+  - component: {fileID: 752280181}
   - component: {fileID: 752280175}
   - component: {fileID: 752280178}
-  - component: {fileID: 752280179}
   - component: {fileID: 752280180}
   m_Layer: 0
   m_Name: Player
@@ -955,19 +955,6 @@ MonoBehaviour:
     m_Bits: 64
   _interactivePromptUI: {fileID: 108545092}
   _numFound: 0
---- !u!65 &752280179
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 752280174}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &752280180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -989,6 +976,32 @@ MonoBehaviour:
   kb_force: 2.33
   currentHealth: 0
   maxHealth: 100
+--- !u!61 &752280181
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752280174}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &857876991
 GameObject:
   m_ObjectHideFlags: 0
@@ -1561,6 +1574,7 @@ MonoBehaviour:
   repathRate: 0.5
   reachedEndOfPath: 0
   idle: 0
+  sm_Combat: {fileID: 1769266902}
 --- !u!61 &1769266899
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1647,6 +1661,8 @@ MonoBehaviour:
   rb: {fileID: 1769266903}
   stateMachine: {fileID: 1769266898}
   KBTimeLength: 1
+  damage: 20
+  dash: 2
 --- !u!50 &1769266903
 Rigidbody2D:
   serializedVersion: 4
