@@ -54,4 +54,9 @@ public class Slime_Combat : MonoBehaviour
 
         //die animation
     }
+
+
+    public void Attack(){
+        Debug.Log("Slime: ATTACK;");
+    }
 }

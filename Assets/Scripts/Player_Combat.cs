@@ -12,15 +12,20 @@ public class Player_Combat : MonoBehaviour
     //layer for collision
     [SerializeField] private LayerMask _attackMask;
 
-
+    //
     [SerializeField] private float attackDamage = 20f;
     [SerializeField] private float kb_force = 1f;
-    private Vector2 kb_vector;
 
-    [SerializeField] private Transform interactor;
+    
+    //health
+    [SerializeField] private float currentHealth;
+    [SerializeField] private float maxHealth = 100;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        currentHealth = maxHealth;
         
     }
 
@@ -45,16 +50,10 @@ public class Player_Combat : MonoBehaviour
                 _attackMask
             );
         
-        if(hitEnemies.Length > 0){
-            kb_vector = new Vector2(
-                    interactor.localPosition.x *kb_force,
-                    interactor.localPosition.y *kb_force  
-                );
-        }
 
         //damage enemy
         foreach(Collider2D enemy in hitEnemies){
-            enemy.GetComponent<Slime_Combat>().TakeDamage(gameObject, attackDamage, kb_force);
+            enemy.GetComponent<Slime_SM_Combat>().TakeDamage(gameObject, attackDamage, kb_force);
         }
 
     }
@@ -67,6 +66,28 @@ public class Player_Combat : MonoBehaviour
         _attackPoint.position,
         _attackPointRadius
         );
+    }
+
+
+    public void TakeDamage_Player(GameObject sender, float damage){
+
+        //take damage
+        Debug.Log("Player: 'ouch' ");
+        currentHealth -= damage;
+
+
+
+        //if we are out of health
+        if(currentHealth <= 0){
+            Die_Player();
+        }
+    }
+
+    private void Die_Player(){
+
+        Debug.Log("Player: died");
+
+        //die animation
     }
 
     

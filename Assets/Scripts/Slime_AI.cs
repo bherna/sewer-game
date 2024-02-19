@@ -19,12 +19,13 @@ public class Slime_AI : MonoBehaviour
 
     Path path;
     int currentWaypoint = 0; //along the path
-    bool reachedEndOfPath = false;
 
     //seeker reference in slime
     Seeker seeker;
     //rb reference in slime
     Rigidbody2D rb;
+
+    [SerializeField] private float attackRange = 5;
 
 
     // Start is called before the first frame update
@@ -66,14 +67,21 @@ public class Slime_AI : MonoBehaviour
         if(path == null){
             return;
         }
+        //is player in attack range
+        //distance to player
+        float player_dis = Vector2.Distance(rb.transform.position, seeker.transform.position);
+        if(player_dis < attackRange){
+
+            GetComponent<Slime_Combat>().Attack();
+        }
         //stop moving (if we reach end of waypoint list)
-        if(currentWaypoint >= path.vectorPath.Count){
-            reachedEndOfPath = true;
+        else if(currentWaypoint >= path.vectorPath.Count){
+            //reachedEndOfPath = true;
             return;
         }
-        else{
-            reachedEndOfPath = false;
-        }
+
+
+
 
         //get direction to paht
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
@@ -83,10 +91,10 @@ public class Slime_AI : MonoBehaviour
         //add force to enemy
         rb.AddForce(force);
 
+        //distance to next waypoint
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
-
-
-        //if reached current waypoint
+        
+        //move to next waypoint "?"
         if(distance < nextWaypointDistance){
             //go to next waypoint then
             currentWaypoint++;
